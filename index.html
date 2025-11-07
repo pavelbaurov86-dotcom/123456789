@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Курс «Танцуй уверенно где угодно и когда угодно» — Юлия КокСта</title>
+<meta name="description" content="Проект «Танцуй уверенно где угодно и когда угодно» — онлайн‑курс Jazz‑Funk от Юлии КокСта. 6 модулей, доступ навсегда, сертификат." />
+<style>
+  :root{
+    --bg:#0f0a1a;
+    --text:#ffffff;
+    --muted:rgba(255,255,255,0.75);
+    --muted2:rgba(255,255,255,0.6);
+    --card:rgba(255,255,255,0.06);
+    --line:rgba(255,255,255,0.12);
+    --accent:#c7a4ff;
+    --grad1:#ff4da6;
+    --grad2:#9b5cff;
+    --headerH:56px;
+  }
+  @media(min-width:768px){ :root{ --headerH:68px; } }
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.55;padding-top:var(--headerH);}
+  a{color:var(--text);text-decoration:none}
+  a.uline{ text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px;box-sizing:border-box;}
+  header{position:fixed;top:0;left:0;right:0;z-index:9999;backdrop-filter:saturate(120%) blur(8px);background:rgba(15,10,26,.88);border-bottom:1px solid var(--line);}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;height:var(--headerH);box-sizing:border-box;gap:12px;}
+  .brand{font-weight:800;letter-spacing:.2px;white-space:nowrap;}
+  .nav{display:none;gap:24px;font-size:14px;color:var(--muted);}
+  .nav a:hover{color:var(--text);}
+  .pill{display:none;font-size:13px;color:var(--text);border:1px solid var(--line);background:var(--card);padding:6px 10px;border-radius:999px;white-space:nowrap}
+  .hamb{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;color:var(--muted);background:transparent;touch-action:manipulation;}
+  .drawer{display:none;position:fixed;top:var(--headerH);left:0;right:0;z-index:9998;border-top:1px solid var(--line);background:rgba(15,10,26,.98);max-height:calc(100vh - var(--headerH));overflow:auto;}
+  .drawer .wrap{display:grid;gap:8px;padding:12px 16px;}
+  .drawer a{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);}
+  .backdrop{display:none;position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.4);}
+  body.nav-open .drawer{display:block;}
+  body.nav-open .backdrop{display:block;}
+  /* hero */
+  .hero{padding:48px 0 24px;}
+  .grid{display:grid;gap:24px;}
+  .h1{font-size:26px;font-weight:900;line-height:1.2;margin:0;}
+  .accent{color:var(--accent);}
+  .sub{margin:10px 0 0 0;color:var(--muted);font-size:15px}
+  .p{color:var(--muted);max-width:640px;}
+  .badges{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;font-size:14px;}
+  .badge{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:12px;}
+  .cta{display:flex;flex-direction:column;gap:12px;margin-top:18px;}
+  .btn{display:inline-block;text-align:center;padding:12px 18px;border-radius:18px;font-weight:700;border:1px solid var(--line);}
+  .btn-grad{border:none;background:linear-gradient(90deg,var(--grad1),var(--grad2));}
+  .btn:hover{opacity:.95}
+  .poster{aspect-ratio:16/9;border:1px solid var(--line);border-radius:24px;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted2);}
+  section{padding:40px 0;border-top:1px solid var(--line);}
+  h2{font-size:22px;margin:0 0 16px 0;}
+  .cards{display:grid;gap:12px;}
+  .card{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:14px;}
+  .cols-2{grid-template-columns:1fr;}
+  .cols-3{grid-template-columns:1fr;}
+  .cols-4{grid-template-columns:1fr;}
+  .ol{list-style:decimal;padding-left:20px;display:grid;gap:12px;}
+  .price-grid{display:grid;gap:14px;}
+  .price{border:1px solid var(--line);border-radius:22px;background:var(--card);padding:16px;}
+  .price .title{font-weight:800}
+  .price .amount{font-size:22px;margin-top:4px}
+  .details{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:12px;}
+  .faq details{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:12px;}
+  footer{border-top:1px solid var(--line);padding:28px 0;}
+  .muted{color:var(--muted2)}
+  /* desktop */
+  @media(min-width:768px){
+    .nav{display:flex}
+    .pill{display:inline-block}
+    .hamb{display:none}
+    .drawer{display:none!important}
+    .hero{padding:96px 0 40px;}
+    .h1{font-size:40px}
+    .cta{flex-direction:row}
+    .cols-2{grid-template-columns:1fr 1fr;}
+    .cols-3{grid-template-columns:1fr 1fr 1fr;}
+    .cols-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+    .price-grid{grid-template-columns:1fr 1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">Проект «Танцуй уверенно»</a>
+    <nav class="nav">
+      <a href="#about">О тренере</a>
+      <a href="#benefits">Зачем</a>
+      <a href="#program">Программа</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply">Заявка</a>
+    </nav>
+    <div class="pill">JazzFunk.Academy</div>
+    <button class="hamb" id="hamb" aria-label="Меню" aria-expanded="false" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <div class="wrap">
+    <a href="#about">О тренере</a>
+    <a href="#benefits">Зачем</a>
+    <a href="#program">Программа</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#faq">FAQ</a>
+    <a href="#apply">Заявка</a>
+    <div class="muted" style="font-size:12px">JazzFunk.Academy</div>
+  </div>
+</div>
+<div class="backdrop" id="backdrop"></div>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap grid cols-2">
+      <div>
+        <h1 class="h1">Поймай плавность и раскованность в движениях с <span class="accent">Jazz‑Funk</span></h1>
+        <p class="sub">Онлайн‑курс «Танцуй уверенно где угодно и когда угодно» от <a class="uline" href="https://t.me/Yulia_KokSta" target="_blank" rel="noopener">Юлии КокСта</a>.</p>
+        <div class="badges">
+          <div class="badge"><strong>200 минут знаний</strong><div class="muted">Уровень: Лёгкий</div></div>
+          <div class="badge"><strong>Доступ навсегда</strong><div class="muted">Сертификат</div></div>
+        </div>
+        <div class="cta">
+          <a class="btn btn-grad" href="#pricing">Купить курс</a>
+          <a class="btn" href="#gift">Подарить курс</a>
+        </div>
+      </div>
+      <div>
+        <div class="poster"><img src="jazzfunk_full_framed_portrait.jpg" alt="Постер курса — Юлия КокСта" style="width:100%;border-radius:24px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap grid cols-2">
+      <div class="card">
+        <h2>О тренере — <a class="uline" href="https://t.me/Yulia_KokSta" target="_blank" rel="noopener">Юлия КокСта @Yulia_KokSta</a></h2>
+        <ul>
+          <li>Танцор; кандидат в мастера спорта по художественной гимнастике</li>
+          <li>Создатель проекта «Танцуй уверенно где угодно и когда угодно»</li>
+          <li>Опыт преподавания офлайн и онлайн; сотни учеников</li>
+        </ul>
+        <p class="p">Как не бояться проявляться и танцевать в удовольствие? Курс для тех, кто стесняется заниматься в группе и считает, что «не умеет двигаться». Через женственность и базу из «3‑х» упражнений начнёте танцевать красиво и импровизировать.</p>
+      </div>
+      <div class="card">
+        Иногда самые светлые идеи рождаются из боли. Я — <a class="uline" href="https://t.me/Yulia_KokSta" target="_blank" rel="noopener">Юлия Кокурятова («КокСта»)</a>. Сцена была моей жизнью, но из‑за здоровья я на 18 лет оставила любимое дело. Переехав, не нашла танцев, которых жаждала душа — и создала их сама. Так родился проект «Танцуй уверенно…» — из веры, что танец возвращает тебя настоящую.
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="wrap">
+      <h2>После курса вы получите</h2>
+      <div class="cards cols-2">
+        <div class="card">Чувство освобождения и эмоциональной разрядки</div>
+        <div class="card">Прилив энергии и бодрости — психологическая свежесть</div>
+        <div class="card">Чувство радости и улыбка на лице</div>
+        <div class="card">Уверенность в себе и своём теле, рост самооценки</div>
+        <div class="card">Ощущение команды и единомышленников</div>
+        <div class="card">Чувство достижения и прогресса: «у меня получилось!»</div>
+        <div class="card">Чувство привлекательности и сексуальности</div>
+        <div class="card">Творческая самореализация и самовыражение</div>
+        <div class="card">Поймать момент — полное погружение без лишних мыслей</div>
+      </div>
+      <div class="muted" style="margin-top:10px">6 обучающих модулей</div>
+    </div>
+  </section>
+
+  <!-- Program (5 levels) -->
+  <section id="program">
+    <div class="wrap">
+      <h2>Программа курса — 5 уровней</h2>
+      <div class="cards cols-3">
+        <div class="card" style="text-align:center">База Jazz‑Funk</div>
+        <div class="card" style="text-align:center">Музыкальность</div>
+        <div class="card" style="text-align:center">Техника и пластика</div>
+        <div class="card" style="text-align:center">Освоение импровизации</div>
+        <div class="card" style="text-align:center">Создание собственного танца</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <h2>Выбрать курс — 3 тарифа</h2>
+      <div class="price-grid">
+        <div class="price">
+          <div class="title">ТАРИФ «С НУЛЯ»</div>
+          <div class="amount">2 690 ₽</div>
+          <ul>
+            <li>✔ Доступ к базовым урокам (2–3 недели)</li>
+            <li>✔ Рабочая тетрадь и чек‑листы</li>
+            <li>✔ Общий чат учеников</li>
+            <li>✔ Техническая поддержка</li>
+            <li class="muted">✖ Обратная связь, куратор, доп. материалы</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-grad" href="#apply">Выбрать</a></div>
+        </div>
+        <div class="price" style="border-width:2px;border-color:var(--accent)">
+          <div class="muted" style="color:var(--accent);font-size:12px">ВЫБОР ПО УМОЛЧАНИЮ</div>
+          <div class="title">ТАРИФ «ПРОФИ»</div>
+          <div class="amount">4 590 ₽</div>
+          <ul>
+            <li>✔ Всё из «С Нуля» +</li>
+            <li>✔ Проверка домашних заданий (2 раза в неделю)</li>
+            <li>✔ Личное сопровождение, закрытый чат</li>
+            <li>✔ Еженедельные вебинары</li>
+            <li>✔ Доп. материалы (музыка, плейлисты)</li>
+            <li>✔ Диплом о прохождении курса</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-grad" href="#apply">Выбрать</a></div>
+        </div>
+        <div class="price">
+          <div class="title">ТАРИФ «ПРЕМИУМ»</div>
+          <div class="amount">7 990 ₽</div>
+          <ul>
+            <li>✔ Всё из «Профи» + персональная консультация</li>
+            <li>✔ Индивидуальный план развития</li>
+            <li>✔ Приоритетная проверка (24 часа)</li>
+            <li>✔ Закрытые мастер‑классы</li>
+            <li>✔ Пожизненный доступ</li>
+            <li>✔ Персональные рекомендации по стилю</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-grad" href="#apply">Выбрать</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="wrap">
+      <h2>Отзывы</h2>
+      <div class="cards cols-3">
+        <div class="card">Удивительно, как быстро стало получаться!</div>
+        <div class="card">Наконец почувствовала себя красивой в движении.</div>
+        <div class="card">Удобно учиться дома и в своём темпе.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important info -->
+  <section id="info">
+    <div class="wrap">
+      <h2>Важная информация</h2>
+      <ul class="details">
+        <li>Способы оплаты: карта, рассрочка (Сбер, Т‑банк), Сплит</li>
+        <li>Доступ ко всем обновлениям без ограничений по времени</li>
+        <li>Поддержка в чате по технике и организации занятий</li>
+        <li>Можно оформить бумажный оригинал сертификата по запросу</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <h2>Ответы на частые вопросы</h2>
+      <div class="faq">
+        <details><summary><strong>Что входит в курс?</strong></summary><div class="muted">6 модулей: база jazz‑funk, музыкальность, техника/пластика, импровизация, связки, итоговая работа.</div></details>
+        <details><summary><strong>Подходит ли для новичка?</strong></summary><div class="muted">Да, подойдёт даже если «никогда не танцевала/не танцевал».</div></details>
+        <details><summary><strong>Кому подойдёт?</strong></summary><div class="muted">1) Кто мечтает красиво двигаться; 2) Танцевал в юности и хочет вернуться; 3) Хочет проживать эмоции через движение; 4) Ищет хобби и комьюнити; 5) Начинающие танцоры и подтанцовка.</div></details>
+        <details><summary><strong>Могут ли заниматься мужчины?</strong></summary><div class="muted">Да, курс открыт для всех.</div></details>
+        <details><summary><strong>Как проходят уроки? В какое время?</strong></summary><div class="muted">Уроки в записи. Занимайтесь в любое удобное время.</div></details>
+        <details><summary><strong>Что нужно чтобы начать?</strong></summary><div class="muted">Удобная одежда, немного пространства и желание двигаться.</div></details>
+        <details><summary><strong>Есть ли рассрочка / способы оплаты?</strong></summary><div class="muted">Да: карта, рассрочка (Сбер, Т‑банк), Сплит.</div></details>
+        <details><summary><strong>Если не понравится?</strong></summary><div class="muted">Возможен возврат — напишите нам в течение гарантийного срока.</div></details>
+        <details><summary><strong>Есть ли пробный период?</strong></summary><div class="muted">Есть демо‑материалы; по акциям — пробный модуль.</div></details>
+        <details><summary><strong>Могу ли сменить тариф?</strong></summary><div class="muted">Да, можно доплатить разницу и перейти на более высокий тариф.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply -->
+  <section id="apply">
+    <div class="wrap">
+      <h2>Оставить заявку</h2>
+      <form class="grid" style="gap:10px;max-width:720px">
+        <input placeholder="Ваше имя" style="background:transparent;border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--text)"/>
+        <input placeholder="Телефон" style="background:transparent;border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--text)"/>
+        <input placeholder="E‑mail" style="background:transparent;border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--text)"/>
+        <textarea placeholder="Комментарий (по желанию)" style="background:transparent;border:1px solid var(--line);border-radius:14px;padding:12px;height:120px;color:var(--text)"></textarea>
+        <label style="display:flex;align-items:flex-start;gap:8px;color:var(--muted);font-size:14px">
+          <input type="checkbox" style="accent-color:var(--accent);margin-top:4px">
+          <span>Согласен(на) на обработку персональных данных и принимаю условия публичной оферты</span>
+        </label>
+        <button type="button" class="btn btn-grad" style="width:fit-content">Отправить заявку</button>
+        <div class="muted" style="font-size:12px">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Gift -->
+  <section id="gift">
+    <div class="wrap">
+      <h2>Подарить курс</h2>
+      <p class="p">Оформите подарок — мы пришлём сертификат и инструкции на e‑mail получателя сразу после оплаты.</p>
+      <a class="btn btn-grad" href="#pricing">Выбрать тариф</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:grid;gap:16px;grid-template-columns:1fr;align-items:start">
+    <div>
+      <div style="font-weight:700">
+        <a class="uline" href="https://t.me/Yulia_KokSta" target="_blank" rel="noopener">Юлия КокСта @Yulia_KokSta</a> · JazzFunk.Academy
+      </div>
+      <p class="muted" style="margin:8px 0 0 0">ИП: реквизиты для оферты и договора-оферты. Политика конфиденциальности. © <span id="yr"></span></p>
+    </div>
+    <div>
+      <div style="font-weight:700">Контакты</div>
+      <p class="muted" style="margin:8px 0 0 0">E‑mail: hello@example.com</p>
+      <p class="muted">Телеграм: <a class="uline" href="https://t.me/Yulia_KokSta" target="_blank" rel="noopener">@Yulia_KokSta</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav open/close with body class
+  const body = document.body;
+  const hamb = document.getElementById('hamb');
+  const drawer = document.getElementById('drawer');
+  const backdrop = document.getElementById('backdrop');
+  function toggleNav(force){
+    const willOpen = force !== undefined ? force : !body.classList.contains('nav-open');
+    body.classList.toggle('nav-open', willOpen);
+    hamb.setAttribute('aria-expanded', String(willOpen));
+  }
+  hamb.addEventListener('click', ()=> toggleNav());
+  hamb.addEventListener('touchstart', (e)=>{ e.preventDefault(); toggleNav(); }, {passive:false});
+  backdrop.addEventListener('click', ()=> toggleNav(false));
+  drawer.addEventListener('click', (e)=>{
+    const t = e.target; if(t.tagName === 'A'){ toggleNav(false); }
+  });
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
